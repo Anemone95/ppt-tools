@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Code Prettier</title>
+    <link rel="stylesheet" href="./editor.css" />
+    <script defer src="./vendor/highlight.min.js"></script>
+    <script defer src="./vendor/prettier/standalone.js"></script>
+    <script defer src="./vendor/prettier/plugins/babel.js"></script>
+    <script defer src="./vendor/prettier/plugins/estree.js"></script>
+    <script defer src="./vendor/prettier/plugins/typescript.js"></script>
+    <script defer src="./vendor/prettier/plugins/html.js"></script>
+    <script defer src="./vendor/prettier/plugins/postcss.js"></script>
+    <script defer src="./vendor/prettier/plugins/markdown.js"></script>
+    <script defer src="./editor.js"></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+          <span>Code Prettier</span>
+        </div>
+        <p class="mode-note"><span aria-hidden="true">●</span> <span id="modeNote">Inserts into the current slide</span></p>
+      </header>
+
+      <section class="workspace" aria-label="Code formatting workspace">
+        <article class="panel input-panel">
+          <div class="panel-header">
+            <div>
+              <p class="step-label">01 · Input</p>
+              <h2>Source code</h2>
+            </div>
+            <div class="input-actions">
+              <label class="select-wrap">
+                <select id="languageSelect" aria-label="Code language">
+                  <option value="auto">Auto detect</option>
+                  <option value="javascript" selected>JavaScript</option>
+                  <option value="typescript">TypeScript</option>
+                  <option value="python">Python</option>
+                  <option value="java">Java</option>
+                  <option value="cpp">C / C++</option>
+                  <option value="csharp">C#</option>
+                  <option value="go">Go</option>
+                  <option value="rust">Rust</option>
+                  <option value="json">JSON</option>
+                  <option value="bash">Shell</option>
+                  <option value="sql">SQL</option>
+                  <option value="xml">HTML / XML</option>
+                  <option value="css">CSS</option>
+                  <option value="markdown">Markdown</option>
+                  <option value="plaintext">Plain text</option>
+                </select>
+                <svg viewBox="0 0 12 8" aria-hidden="true"><path d="m1 1 5 5 5-5" /></svg>
+              </label>
+              <button class="format-button" id="formatButton" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.2 3.8L17 8l-3.8 1.2L12 13l-1.2-3.8L7 8l3.8-1.2L12 3ZM6 14l.8 2.2L9 17l-2.2.8L6 20l-.8-2.2L3 17l2.2-.8L6 14Zm11-1 1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z" /></svg>
+                Format code
+              </button>
+            </div>
+          </div>
+
+          <div class="editor-shell">
+            <div class="editor-toolbar" aria-hidden="true">
+              <span></span><span></span><span></span>
+              <p>input.code</p>
+            </div>
+            <textarea id="codeInput" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="Paste or type code here" aria-label="Source code"></textarea>
+          </div>
+          <p class="panel-hint"><kbd>⌘</kbd><span>+</span><kbd>Enter</kbd> <span id="hintAction">Insert into slide</span> · <kbd>Esc</kbd> Cancel</p>
+        </article>
+
+        <article class="panel output-panel">
+          <div class="panel-header">
+            <div>
+              <p class="step-label">02 · Output</p>
+              <h2>Slide-ready code</h2>
+            </div>
+            <div class="output-controls">
+              <label class="toggle-control">
+                <input id="lineNumberToggle" type="checkbox" checked />
+                <span class="toggle-track" aria-hidden="true"><span></span></span>
+                <span>Line numbers</span>
+              </label>
+              <label class="size-control">
+                <span>Number gap</span>
+                <select id="numberGapSelect" aria-label="Gap between line numbers and code">
+                  <option value="1">1 space</option>
+                  <option value="2" selected>2 spaces</option>
+                  <option value="3">3 spaces</option>
+                  <option value="4">4 spaces</option>
+                  <option value="6">6 spaces</option>
+                  <option value="8">8 spaces</option>
+                </select>
+              </label>
+              <label class="size-control">
+                <span>Font size</span>
+                <select id="fontSizeSelect" aria-label="PowerPoint font size">
+                  <option value="14">14 pt</option>
+                  <option value="16">16 pt</option>
+                  <option value="18">18 pt</option>
+                  <option value="20">20 pt</option>
+                  <option value="24" selected>24 pt</option>
+                  <option value="28">28 pt</option>
+                  <option value="32">32 pt</option>
+                  <option value="36">36 pt</option>
+                  <option value="40">40 pt</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="preview-shell" id="previewShell">
+            <div class="preview-toolbar">
+              <div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <p id="previewLanguage">JAVASCRIPT</p>
+              <span class="line-count" id="lineCount">0 lines</span>
+            </div>
+            <div class="code-viewport">
+              <pre class="line-numbers" id="lineNumbers"></pre>
+              <pre class="code-pre"><span class="line-highlights" id="lineHighlights" aria-hidden="true"></span><code id="codeOutput"></code></pre>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="secondary-button" id="cancelButton" type="button">Cancel</button>
+            <button class="primary-button" id="applyButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m10 10-2 2 2 2M14 10l2 2-2 2" /></svg>
+              <span id="applyLabel">Insert into slide</span>
+            </button>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p><span>Edit tip</span> Select an inserted code block and choose Code Prettier again to change its code or settings.</p>
+        <p><span>Highlight</span> Click a line number in the preview to highlight that line, and click its color swatch to change the color.</p>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+      <span></span>
+    </div>
+  </body>
+</html>

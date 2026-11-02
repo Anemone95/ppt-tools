@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui">
+  <ribbon>
+    <tabs>
+      <tab id="pptToolsTab" label="PPT Tools">
+        <group id="pptToolsProgressGroup" label="Section Progress">
+          <button
+            id="pptToolsUpdateProgress"
+            label="Update Section Progress"
+            size="large"
+            imageMso="Refresh"
+            screentip="Update the section progress bar"
+            supertip="Show section names inside a segmented progress bar and fill each section according to slide progress."
+            onAction="RibbonUpdateProgressBars" />
+          <button
+            id="pptToolsRemoveProgress"
+            label="Remove Section Progress"
+            size="large"
+            imageMso="Delete"
+            screentip="Remove the section progress bar"
+            supertip="Remove the section progress elements created by PPT Tools from the active presentation."
+            onAction="RibbonRemoveProgressBars" />
+        </group>
+        <group id="pptToolsNotesGroup" label="Notes">
+          <button
+            id="pptToolsExportNotes"
+            label="Export Notes to Markdown"
+            size="large"
+            imageMso="FileSaveAs"
+            screentip="Export slide notes to Markdown"
+            supertip="Choose a folder and export all slide notes to one UTF-8 Markdown file."
+            onAction="RibbonExportNotesToMarkdown" />
+          <button
+            id="pptToolsLoadNotes"
+            label="Load Notes from Markdown"
+            size="large"
+            imageMso="FileOpen"
+            screentip="Load slide notes from Markdown"
+            supertip="Choose a UTF-8 Markdown file and load each # Slide N block into the corresponding slide notes."
+            onAction="RibbonLoadNotesFromMarkdown" />
+        </group>
+        <group id="pptToolsCodeGroup" label="Code">
+          <button
+            id="pptToolsCodePrettier"
+            label="Code Prettier"
+            size="large"
+            imageMso="ViewVisualBasicCode"
+            screentip="Insert or edit highlighted code"
+            supertip="Open the Code Prettier editor to format code and insert it into the slide as editable, syntax-highlighted text. Select an inserted code block first to edit it."
+            onAction="RibbonCodePrettier" />
+        </group>
+      </tab>
+    </tabs>
+  </ribbon>
+</customUI>
