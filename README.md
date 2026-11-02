@@ -86,3 +86,7 @@ Code Prettier 编辑窗口安装在：
    ```bash
    scripts/install_code_prettier.sh
    ```
+
+## 许可证
+
+本项目以 [MIT](LICENSE) 许可证发布。`src/code-prettier/editor/vendor/` 中的 highlight.js（BSD-3-Clause）和 Prettier（MIT）附带各自的许可证文件。
