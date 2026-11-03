@@ -1,5 +1,7 @@
 # PPT Tools
 
+[English](README.md) | 简体中文
+
 `PPTTools.ppam` 为 PowerPoint 添加分段 Section 进度条、Notes 导入导出和代码着色命令。
 
 Ribbon 标签、按钮、提示和错误消息均使用英文。
@@ -23,12 +25,12 @@ Ribbon 标签、按钮、提示和错误消息均使用英文。
 - Markdown 中未出现的页面保持原 notes，空 block 会清空对应页面 notes。
 - 导入时会移除成对的 `**` 标记，并把其中内容设置为 PowerPoint 原生粗体。
 - `Code Prettier` 打开代码编辑窗口，界面与设置参照 [Code to Slides](https://ppt.anemone.top/)。
-- 编辑窗口提供语言选择（含 Auto detect），`Format code` 使用 Prettier 格式化 JavaScript、TypeScript、JSON、HTML、CSS 和 Markdown。
+- 编辑窗口提供语言选择（含 Auto detect），`Format code` 使用 Prettier 格式化 JavaScript、TypeScript、Java、JSON、HTML、CSS 和 Markdown（Java 由 prettier-plugin-java 格式化）。
 - 右侧预览使用与幻灯片相同的配色，可设置行号、行号间距和字号（14–40pt）。
 - 点击预览中的行号即可高亮该行（默认浅黄色），再次点击取消；高亮行左侧的色块用于修改颜色。幻灯片中的高亮行等宽对齐，覆盖行号和代码。
 - `Insert into slide`（⌘Enter）把代码插入当前幻灯片，生成可编辑的 Consolas 着色文本框。
 - 选中已插入的代码块后再次选择 `Code Prettier`，编辑窗口会载入原代码和设置，`Update code on slide` 原位更新该代码块。
-- 编辑窗口使用本地的 highlight.js 和 Prettier，离线可用。
+- 编辑窗口使用本地的 highlight.js、Prettier 和 prettier-plugin-java，离线可用。
 
 ## 项目结构
 
@@ -36,7 +38,7 @@ Ribbon 标签、按钮、提示和错误消息均使用英文。
 - `src/customUI14.xml`：PowerPoint Ribbon 定义。
 - `scripts/inject_custom_ui.py`：生成 PPAM 并写入 Ribbon 定义。
 - `src/code-prettier/PPTToolsCodePrettier.applescript`：`AppleScriptTask` 调用的入口脚本。
-- `src/code-prettier/editor/`：Code Prettier 编辑窗口（JXA 窗口宿主、WebKit 页面和 `vendor/` 中的 highlight.js、Prettier）。
+- `src/code-prettier/editor/`：Code Prettier 编辑窗口（JXA 窗口宿主、WebKit 页面和 `vendor/` 中的 highlight.js、Prettier、prettier-plugin-java）。
 - `scripts/install_code_prettier.sh`：把编辑窗口安装到 PowerPoint 的脚本目录。
 - `build/PPTTools.ppam`：可安装的加载项。
 
@@ -89,4 +91,4 @@ Code Prettier 编辑窗口安装在：
 
 ## 许可证
 
-本项目以 [MIT](LICENSE) 许可证发布。`src/code-prettier/editor/vendor/` 中的 highlight.js（BSD-3-Clause）和 Prettier（MIT）附带各自的许可证文件。
+本项目以 [MIT](LICENSE) 许可证发布。`src/code-prettier/editor/vendor/` 中的 highlight.js（BSD-3-Clause）、Prettier（MIT）和 prettier-plugin-java 打包文件（Apache-2.0 与 MIT）附带各自的许可证文件。
