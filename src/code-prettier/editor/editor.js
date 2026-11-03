@@ -29,6 +29,7 @@ const formatterConfigs = {
   xml: { parser: "html", plugins: ["html"] },
   css: { parser: "css", plugins: ["postcss"] },
   markdown: { parser: "markdown", plugins: ["markdown"] },
+  java: { parser: "java", plugins: ["java"] },
 };
 
 const languageNames = {
@@ -141,7 +142,7 @@ async function formatCode() {
   const config = formatterConfigs[language];
 
   if (!config) {
-    showToast("Formatting supports JavaScript, TypeScript, JSON, HTML, CSS, and Markdown", true);
+    showToast("Formatting supports JavaScript, TypeScript, Java, JSON, HTML, CSS, and Markdown", true);
     return;
   }
   if (!codeInput.value.trim()) {
