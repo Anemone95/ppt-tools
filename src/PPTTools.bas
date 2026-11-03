@@ -1278,10 +1278,10 @@ Private Sub WriteCodeText( _
     With codeShape.TextFrame
         .WordWrap = msoFalse
         .AutoSize = ppAutoSizeShapeToFitText
+        ' DeleteText resets the character format, so the new text starts without a highlight.
+        .DeleteText
 
         With .TextRange
-            ' Clearing first drops highlights that the new text would inherit.
-            .Text = ""
             .Text = slideText
             .ParagraphFormat.Alignment = ppAlignLeft
             .ParagraphFormat.SpaceBefore = 0
